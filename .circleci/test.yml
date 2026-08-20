@@ -61,7 +61,7 @@ jobs:
           command: |
             pip install git+https://github.com/open-mmlab/mmengine.git@main
             pip install -U openmim
-            mim install mmcv>=2.0.0
+            mim install 'mmcv >= 2.0.0rc4, < 2.2.0'
             pip install mmpretrain>=1.0.0rc7
             pip install mmdet>=3.0.0
             pip install -r requirements/tests.txt -r requirements/optional.txt
