@@ -65,7 +65,7 @@ jobs:
             pip install mmpretrain>=1.0.0rc7
             pip install mmdet>=3.0.0
             pip install -r requirements/tests.txt -r requirements/optional.txt
-            echo 'export PYTHONPATH="$PWD/src/latent-diffusion:$PYTHONPATH"' >> "$BASH_ENV"
+            echo 'export PYTHONPATH="$PWD/src/latent-diffusion:$PWD/src/taming-transformers:$PYTHONPATH"' >> "$BASH_ENV"
             python -m pip install 'albumentations>=0.3.2' --no-binary qudida
       - run:
           name: Build and install
@@ -108,7 +108,7 @@ jobs:
           name: Build Docker image
           command: |
             docker build .circleci/docker -t mmseg:gpu --build-arg PYTORCH=<< parameters.torch >> --build-arg CUDA=<< parameters.cuda >> --build-arg CUDNN=<< parameters.cudnn >>
-            docker run --gpus all -t -d -e PYTHONPATH=/mmseg/src/latent-diffusion -v /home/circleci/project:/mmseg -v /home/circleci/mmengine:/mmengine -v /home/circleci/mmpretrain:/mmpretrain -v /home/circleci/mmdetection:/mmdetection -w /mmseg --name mmseg mmseg:gpu
+            docker run --gpus all -t -d -e PYTHONPATH=/mmseg/src/latent-diffusion:/mmseg/src/taming-transformers -v /home/circleci/project:/mmseg -v /home/circleci/mmengine:/mmengine -v /home/circleci/mmpretrain:/mmpretrain -v /home/circleci/mmdetection:/mmdetection -w /mmseg --name mmseg mmseg:gpu
       - run:
           name: Install mmseg dependencies
           command: |
