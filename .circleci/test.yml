@@ -59,7 +59,7 @@ jobs:
       - run:
           name: Install mmseg dependencies
           command: |
-            pip install git+https://github.com/open-mmlab/mmengine.git@main
+            pip install 'mmengine >= 0.5.0, < 1.0.0'
             pip install -U openmim
             mim install 'mmcv >= 2.0.0rc4, < 2.2.0'
             pip install mmpretrain>=1.0.0rc7
@@ -155,7 +155,7 @@ workflows:
           name: minimum_version_cpu
           torch: 1.8.1
           torchvision: 0.9.1
-          python: "3.8"
+          python: "3.7"
           requires:
             - lint
       - build_cpu:
